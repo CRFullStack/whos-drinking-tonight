@@ -1,0 +1,104 @@
+@import "../master/App.scss";
+
+#board {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  width: 100%;
+  background: #fff;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". info ." ". cards ." ". button .";
+}
+
+/* Only for large screen sizes*/
+@media only screen and (min-width: 800px) {
+  #board {
+    grid-template-columns: 1fr 3fr 0.1fr;
+    grid-template-rows: max-content min-content;
+    grid-template-areas:
+      "info cards ."
+      ". button .";
+    .cards {
+      flex-wrap: wrap;
+      align-content: flex-start;
+
+      .card {
+        width: 30%;
+        height: auto;
+        padding: 0;
+        margin: 0.5em;
+      }
+    }
+  }
+}
+
+/******NO need to adjust for positioning. Maybe add a margin or padding********/
+
+.info {
+  grid-area: info;
+
+  ul {
+    margin: 1em 0;
+    padding: 1em 0;
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    li {
+      padding: 1.5em;
+      &:last-child {
+        font-size: 2em;
+        justify-self: flex-end;
+        align-self: center;
+        color: #ccc;
+      }
+    }
+  }
+}
+
+.flip-card-btn {
+  grid-area: button;
+  .myButton {
+    @include button;
+  }
+}
+
+.cards {
+  margin: 0;
+  padding: 0;
+  grid-area: cards;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .card {
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.3s;
+    width: 100%;
+    height: auto;
+    margin: 1.5em;
+    -webkit-perspective: 800px;
+    -moz-perspective: 800px;
+    -o-perspective: 800px;
+    perspective: 800px;
+
+    .container {
+      margin: 0;
+      padding: 8px 16px;
+      background: #fff;
+    }
+    img {
+      width: 100%;
+      height: auto;
+    }
+    /* On mouse-over, add a deeper shadow */
+    &:hover {
+      box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+    }
+  }
+}

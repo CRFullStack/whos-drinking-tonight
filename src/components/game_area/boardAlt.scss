@@ -1,0 +1,196 @@
+@import "../master/App.scss";
+
+#board {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  width: 100%;
+  background: #fff;
+  grid-template-columns: 0.5fr 2fr 0.5fr;
+  grid-template-rows: auto;
+  grid-template-areas: ". info ." ". cards ." ". button .";
+}
+
+/* Only for large screen sizes*/
+@media only screen and (min-width: 800px) {
+  #board {
+    grid-template-columns: 1fr 3fr 0.1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "info cards ."
+      ". button .";
+
+    .cards {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      grid-area: cards;
+
+      .container1,
+      .container2,
+      .container3 {
+        width: 300px;
+        height: 200px;
+        position: relative;
+        perspective: 800px;
+        border-radius: 4px;
+        margin: 1.5em;
+
+        .card1,
+        .card2,
+        .card3 {
+          width: 100%;
+          height: 100%;
+          position: relative;
+          transform-style: preserve-3d;
+          transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          border-radius: 6px;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+          cursor: pointer;
+
+          div {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            border-radius: 6px;
+            background: #fff;
+            display: -ms-flexbox;
+            display: box;
+            display: flex;
+            -o-box-pack: center;
+            justify-content: center;
+            -o-box-align: center;
+            align-items: center;
+            font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-font-smoothing: antialiased;
+            color: #47525d;
+          }
+
+          .back {
+            -webkit-transform: rotateY(180deg);
+            transform: rotateY(180deg);
+            .game-img {
+              width: 20%;
+              height: auto;
+            }
+          }
+        }
+        .card1.flipped,
+        .card2.flipped,
+        .card3.flipped {
+          -webkit-transform: rotateY(180deg);
+          transform: rotateY(180deg);
+        }
+      }
+    }
+  }
+}
+
+/******NO need to adjust for positioning. Maybe add a margin or padding********/
+
+.info {
+  grid-area: info;
+
+  ul {
+    margin: 1em 0;
+    padding: 1em 0;
+    list-style: none;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    li {
+      padding: 1.5em;
+      &:last-child {
+        font-size: 2em;
+        justify-self: flex-end;
+        align-self: center;
+        color: #ccc;
+      }
+    }
+  }
+}
+
+.flip-card-btn {
+  grid-area: button;
+  .myButton {
+    @include button;
+  }
+}
+
+.cards {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  grid-area: cards;
+
+  .container1,
+  .container2,
+  .container3 {
+    width: 300px;
+    height: 200px;
+    position: relative;
+    perspective: 800px;
+    border-radius: 4px;
+    margin: 1.5em;
+
+    .card1,
+    .card2,
+    .card3 {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      transform-style: preserve-3d;
+      transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border-radius: 6px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+      cursor: pointer;
+
+      div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        border-radius: 6px;
+        background: #fff;
+        display: -ms-flexbox;
+        display: box;
+        display: flex;
+        -o-box-pack: center;
+        justify-content: center;
+        -o-box-align: center;
+        align-items: center;
+        font: 16px/1.5 "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+        color: #47525d;
+      }
+
+      .back {
+        -webkit-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+        .game-img {
+          width: 20%;
+          height: auto;
+        }
+      }
+    }
+    .card1.flipped,
+    .card2.flipped,
+    .card3.flipped {
+      -webkit-transform: rotateY(180deg);
+      transform: rotateY(180deg);
+    }
+  }
+}
